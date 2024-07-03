@@ -1,10 +1,18 @@
 extends CharacterBody2D
 class_name PlayerShip 
 
+signal player_died
+
 @export var max_vel = 10.0 
 @export var rotation_speed = 3.5 
 @export var velocity_limiting = 0.3 
 @export var linear_velocity = 200
+
+@onready var respawn_timer = $RespawnTimer
+@onready var blink_timer = $BlinkTimer
+@onready var sprite = $Sprite2D
+
+var isImmune : bool
 
 var input_vector : Vector2
 var rotation_dir : int
@@ -57,3 +65,19 @@ func limit_movement():
 	elif global_position.x >= bounds.right:
 		global_position.x = bounds.left
 	
+func respawn_immunity():
+	isImmune = true 
+	blink_timer.start()
+	respawn_timer.start()
+
+func _on_respawn_timer_timeout():
+	isImmune = false 
+	sprite.visible = true 
+	blink_timer.stop()
+	respawn_timer.stop()
+
+func _on_blink_timer_timeout():
+	if sprite.visible:
+		sprite.visible = false
+	else:
+		sprite.visible = true

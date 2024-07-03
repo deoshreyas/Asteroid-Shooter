@@ -3,7 +3,7 @@ class_name Ufo
 
 @onready var destruction_particles = $DestructionParticles
 
-@export var bullet : PackedScene
+@export var bullet_scene : PackedScene
 @export var pathToFollow : PathFollow2D
 
 var speed = 150.0
@@ -20,4 +20,20 @@ func _on_visible_on_screen_notifier_2d_screen_exited():
 	queue_free()
 
 func _on_bullet_timer_timeout():
-	pass # Replace with function body.
+	var bullet = bullet_scene.instantiate() as Bullet 
+	bullet.set_collision_layer_value(2, 0)
+	bullet.set_collision_layer_value(5, 1)
+	get_tree().root.add_child(bullet)
+	bullet.position = global_position
+	bullet.direction = get_random_dir()
+	
+func get_random_dir():
+	var node_y = get_global_transform().origin.y 
+	var screen_height = get_viewport().get_visible_rect().size.y
+	var shootDown = node_y <= screen_height/2
+	if shootDown:
+		var angle = deg_to_rad(randf_range(45, 155))
+		return Vector2(cos(angle), sin(angle))
+	else:
+		var angle = deg_to_rad(randf_range(225, 315))
+		return Vector2(cos(angle), sin(angle))

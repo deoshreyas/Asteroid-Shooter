@@ -22,3 +22,13 @@ texture = ExtResource("2_edvea")
 position = Vector2(2.79753e-06, 32)
 script = ExtResource("3_fgg54")
 bullet = ExtResource("4_h4j0e")
+
+[node name="RespawnTimer" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+
+[node name="BlinkTimer" type="Timer" parent="."]
+wait_time = 0.3
+
+[connection signal="timeout" from="RespawnTimer" to="." method="_on_respawn_timer_timeout"]
+[connection signal="timeout" from="BlinkTimer" to="." method="_on_blink_timer_timeout"]

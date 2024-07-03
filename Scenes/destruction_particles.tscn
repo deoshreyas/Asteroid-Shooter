@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://cp6w6k6qeqpoj"]
+[gd_scene load_steps=2 format=3 uid="uid://xg303f7drd71"]
 
-[ext_resource type="Script" path="res://Scripts/PlayerParticles.gd" id="1_daxjt"]
+[ext_resource type="Script" path="res://Scripts/DestructionParticles.gd" id="1_18aug"]
 
 [node name="DestructionParticles" type="CPUParticles2D"]
 emitting = false
@@ -15,7 +15,7 @@ initial_velocity_max = 220.0
 angle_max = 180.0
 scale_amount_min = 3.0
 scale_amount_max = 10.0
-script = ExtResource("1_daxjt")
+script = ExtResource("1_18aug")
 
 [node name="Timer" type="Timer" parent="."]
 one_shot = true

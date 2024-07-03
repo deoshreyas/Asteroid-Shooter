@@ -3,7 +3,7 @@ class_name AsteroidSpawner
 
 @export var asteroid_scene : PackedScene
 
-@export var count = 7 
+@export var count = 7
 
 const utils = preload("res://Scripts/utilities.gd")
 

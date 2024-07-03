@@ -59,6 +59,7 @@ func limit_movement():
 
 func _on_body_entered(body):
 	if body is PlayerShip:
+		(body as PlayerShip).player_died.emit()
 		body.queue_free()
 		destroy_self()
 

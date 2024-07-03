@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Scripts/asteroid.gd" id="1_gucta"]
 [ext_resource type="Texture2D" uid="uid://cwi1xeblcxue0" path="res://Assets/Sprites/astro1.png" id="2_hgk3y"]
-[ext_resource type="PackedScene" uid="uid://cp6w6k6qeqpoj" path="res://Scenes/destruction_particles.tscn" id="3_3gd1u"]
+[ext_resource type="PackedScene" uid="uid://xg303f7drd71" path="res://Scenes/destruction_particles.tscn" id="3_3gd1u"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_v5k3w"]
 radius = 70.0071
