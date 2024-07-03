@@ -1,4 +1,4 @@
-extends Node2D
+extends Area2D
 class_name Asteroid
 
 var asteroid_sprites = ["res://Assets/Sprites/astro1.png", "res://Assets/Sprites/astro2.png", 
@@ -6,7 +6,10 @@ var asteroid_sprites = ["res://Assets/Sprites/astro1.png", "res://Assets/Sprites
 
 const utils = preload("res://Scripts/utilities.gd")
 
+signal on_asteroid_destroyed(size: utils.size, position: Vector2)
+
 @export var speed = 100.0
+@export var speed_increment = 0.5;
 
 var size = utils.size.BIG
 
@@ -14,12 +17,15 @@ var direction : Vector2
 
 @onready var sprite = $Sprite2D
 
+@onready var destruction_particles = $DestructionParticles
+
 func _ready():
 	var scale_value = 1 / (size + 1.0)
 	scale = Vector2(scale_value, scale_value)
 	
 	var random_image = asteroid_sprites.pick_random()
 	sprite.texture = load(random_image)
+	speed = speed + speed * speed_increment * size
 	
 	var x = randf_range(-1, 1)
 	var y = randf_range(-1, 1)
@@ -50,3 +56,18 @@ func limit_movement():
 		global_position.x = bounds.right
 	elif global_position.x >= bounds.right:
 		global_position.x = bounds.left
+
+func _on_body_entered(body):
+	if body is PlayerShip:
+		body.queue_free()
+		destroy_self()
+
+func explode():
+	destruction_particles.emitting = true
+	destruction_particles.reparent(get_tree().root)
+
+func destroy_self():
+	explode()
+	queue_free()
+	var new_asteroid_size = size + 1
+	on_asteroid_destroyed.emit(new_asteroid_size, global_position)

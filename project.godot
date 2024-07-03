@@ -46,6 +46,14 @@ shoot={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="Player"
+2d_physics/layer_2="Bullet"
+2d_physics/layer_3="Asteroid"
+2d_physics/layer_4="UFO"
+2d_physics/layer_5="UFO_Bullet"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"

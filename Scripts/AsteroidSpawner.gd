@@ -32,3 +32,9 @@ func instantiate_asteroid(size: utils.size, position : Vector2):
 	get_tree().root.add_child.call_deferred(asteroid)
 	asteroid.global_position = position
 	asteroid.size = size
+	asteroid.on_asteroid_destroyed.connect(asteroid_destroyed)
+
+func asteroid_destroyed(size: utils.size, position: Vector2):
+	if size < 2:
+		for i in range(2):
+			instantiate_asteroid(size, position)
