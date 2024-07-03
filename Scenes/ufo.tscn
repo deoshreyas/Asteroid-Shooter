@@ -1,0 +1,21 @@
+[gd_scene load_steps=5 format=3 uid="uid://bmu2yta43a7ph"]
+
+[ext_resource type="Texture2D" uid="uid://mtwphmp5ahqj" path="res://Assets/Sprites/ufo.png" id="1_vrvli"]
+[ext_resource type="Script" path="res://Scripts/ufo.gd" id="1_wpn0l"]
+[ext_resource type="PackedScene" uid="uid://cp6w6k6qeqpoj" path="res://Scenes/destruction_particles.tscn" id="3_j764d"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tl4h7"]
+radius = 13.0
+height = 68.0
+
+[node name="UFO" type="Area2D"]
+script = ExtResource("1_wpn0l")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_vrvli")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_tl4h7")
+
+[node name="DestructionParticles" parent="." instance=ExtResource("3_j764d")]

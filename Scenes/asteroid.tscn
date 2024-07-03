@@ -20,4 +20,5 @@ shape = SubResource("CircleShape2D_v5k3w")
 
 [node name="DestructionParticles" parent="." instance=ExtResource("3_3gd1u")]
 
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

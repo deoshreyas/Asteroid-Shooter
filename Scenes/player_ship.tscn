@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://d171ojesuwkt"]
+[gd_scene load_steps=5 format=3 uid="uid://d171ojesuwkt"]
 
 [ext_resource type="Script" path="res://Scripts/PlayerShip.gd" id="1_kh820"]
 [ext_resource type="Texture2D" uid="uid://dxrnab177077r" path="res://Assets/Sprites/player.png" id="2_edvea"]
+[ext_resource type="Script" path="res://Scripts/Muzzle.gd" id="3_fgg54"]
+[ext_resource type="PackedScene" uid="uid://cb5sx3c2k62et" path="res://Scenes/bullet.tscn" id="4_h4j0e"]
 
 [node name="PlayerShip" type="CharacterBody2D"]
 rotation = 3.14159
@@ -18,3 +20,5 @@ texture = ExtResource("2_edvea")
 
 [node name="Muzzle" type="Marker2D" parent="."]
 position = Vector2(2.79753e-06, 32)
+script = ExtResource("3_fgg54")
+bullet = ExtResource("4_h4j0e")

@@ -23,8 +23,15 @@ func get_random_position():
 	bounds.bottom =  (camera.position.y + size.y)/2
 	bounds.right = (camera.position.x + size.x)/2
 	bounds.left = (camera.position.x - size.x)/2
-	var x = randi_range(bounds.left, bounds.right)
-	var y = randi_range(bounds.top, bounds.bottom)
+	var x
+	var y
+	while true:
+		x = randi_range(bounds.left, bounds.right)
+		y = randi_range(bounds.top, bounds.bottom)
+		if x>-250 and x<250 and y>-250 and y<250:
+			continue
+		else:
+			break
 	return Vector2(x, y)
 
 func instantiate_asteroid(size: utils.size, position : Vector2):
@@ -35,6 +42,6 @@ func instantiate_asteroid(size: utils.size, position : Vector2):
 	asteroid.on_asteroid_destroyed.connect(asteroid_destroyed)
 
 func asteroid_destroyed(size: utils.size, position: Vector2):
-	if size < 2:
+	if size <= 2:
 		for i in range(2):
 			instantiate_asteroid(size, position)

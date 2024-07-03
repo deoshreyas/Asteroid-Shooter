@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=3 uid="uid://1iunr85mqman"]
+
+[sub_resource type="Curve2D" id="Curve2D_nm6k2"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1019.36, -97, 0, 0, 0, 0, 752.685, 61, 0, 0, 0, 0, 702.356, 79, 0, 0, 0, 0, 669.304, 116, 0, 0, 0, 0, 619.726, 86, 0, 0, 0, 0, 552.871, 88, 0, 0, 0, 0, 492.776, 75, 0, 0, 0, 0, 431.93, 96, 0, 0, 0, 0, 369.953, 73, 0, 0, 0, 0, 316.248, 113, 0, 0, 0, 0, 260.302, 74, 0, 0, 0, 0, 208.829, 95, 0, 0, 0, 0, 164.953, 73, 0, 0, 0, 0, 123, 91, 0, 0, 0, 0, 80.3766, 93, 0, 0, 0, 0, 50.3293, 63, 0, 0, 0, 0, -235.12, -119)
+}
+point_count = 17
+
+[node name="UFOSpawner" type="Node"]
+
+[node name="PathTop" type="Path2D" parent="."]
+position = Vector2(-50, -50)
+scale = Vector2(1.33123, 1)
+curve = SubResource("Curve2D_nm6k2")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="PathTop"]
+position = Vector2(1019.36, -97)
+rotation = 2.60671
+
+[node name="PathTop2" type="Path2D" parent="."]
+position = Vector2(-50, 415)
+scale = Vector2(1.33123, 1)
+curve = SubResource("Curve2D_nm6k2")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="PathTop2"]
+position = Vector2(1019.36, -97)
+rotation = 2.60671

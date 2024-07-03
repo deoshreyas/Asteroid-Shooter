@@ -71,3 +71,8 @@ func destroy_self():
 	queue_free()
 	var new_asteroid_size = size + 1
 	on_asteroid_destroyed.emit(new_asteroid_size, global_position)
+
+func _on_area_entered(area):
+	if area is Bullet:
+		area.queue_free()
+		destroy_self()
