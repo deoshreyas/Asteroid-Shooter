@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cubdsau7gep4q"]
+[gd_scene load_steps=3 format=3 uid="uid://cubdsau7gep4q"]
 
 [ext_resource type="PackedScene" uid="uid://d171ojesuwkt" path="res://Scenes/player_ship.tscn" id="1_21phs"]
+[ext_resource type="PackedScene" uid="uid://blo0ksxjdndxy" path="res://Scenes/asteroid_spawner.tscn" id="2_f38y7"]
 
 [node name="World" type="Node"]
 
@@ -8,3 +9,5 @@
 zoom = Vector2(0.5, 0.5)
 
 [node name="PlayerShip" parent="." instance=ExtResource("1_21phs")]
+
+[node name="AsteroidSpawner" parent="." instance=ExtResource("2_f38y7")]

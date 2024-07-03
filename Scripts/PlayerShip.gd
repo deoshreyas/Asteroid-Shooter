@@ -1,6 +1,5 @@
 extends CharacterBody2D
-
-class_name Player 
+class_name PlayerShip 
 
 @export var max_vel = 10.0 
 @export var rotation_speed = 3.5 
@@ -40,7 +39,7 @@ func slow_down(delta):
 		
 func limit_movement():
 	var bounds = {}
-	var rect = get_viewport_rect()
+	var rect = get_viewport().get_visible_rect()
 	var camera = get_viewport().get_camera_2d()
 	var zoom = camera.zoom 
 	var camera_pos = camera.global_position
