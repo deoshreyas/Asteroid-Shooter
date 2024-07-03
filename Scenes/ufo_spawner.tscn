@@ -1,27 +1,42 @@
-[gd_scene load_steps=2 format=3 uid="uid://1iunr85mqman"]
+[gd_scene load_steps=5 format=3 uid="uid://1iunr85mqman"]
+
+[ext_resource type="Script" path="res://Scripts/ufo_spawner.gd" id="1_gix5j"]
+[ext_resource type="PackedScene" uid="uid://bmu2yta43a7ph" path="res://Scenes/ufo.tscn" id="2_co0mf"]
+[ext_resource type="Script" path="res://Scripts/UFOTimer.gd" id="2_j6ua5"]
 
 [sub_resource type="Curve2D" id="Curve2D_nm6k2"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 1019.36, -97, 0, 0, 0, 0, 752.685, 61, 0, 0, 0, 0, 702.356, 79, 0, 0, 0, 0, 669.304, 116, 0, 0, 0, 0, 619.726, 86, 0, 0, 0, 0, 552.871, 88, 0, 0, 0, 0, 492.776, 75, 0, 0, 0, 0, 431.93, 96, 0, 0, 0, 0, 369.953, 73, 0, 0, 0, 0, 316.248, 113, 0, 0, 0, 0, 260.302, 74, 0, 0, 0, 0, 208.829, 95, 0, 0, 0, 0, 164.953, 73, 0, 0, 0, 0, 123, 91, 0, 0, 0, 0, 80.3766, 93, 0, 0, 0, 0, 50.3293, 63, 0, 0, 0, 0, -235.12, -119)
+"points": PackedVector2Array(0, 0, 0, 0, 1019.36, -97, 0, 0, 0, 0, 752.685, 61, 0, 0, 0, 0, 702.356, 79, 0, 0, 0, 0, 669.304, 116, 0, 0, 0, 0, 619.726, 86, 0, 0, 0, 0, 552.871, 88, 0, 0, 0, 0, 492.776, 75, 0, 0, 0, 0, 431.93, 96, 0, 0, 0, 0, 404.889, 90, 0, 0, 0, 0, 369.953, 73, 0, 0, 0, 0, 316.248, 113, 0, 0, 0, 0, 260.302, 74, 0, 0, 0, 0, 208.829, 95, 0, 0, 0, 0, 164.953, 73, 0, 0, 0, 0, 123, 91, 0, 0, 0, 0, 80.3766, 93, 0, 0, 0, 0, 50.3293, 63, 0, 0, 0, 0, -235.12, -119)
 }
-point_count = 17
+point_count = 18
 
 [node name="UFOSpawner" type="Node"]
+script = ExtResource("1_gix5j")
+ufo_scene = ExtResource("2_co0mf")
+
+[node name="Timer" type="Timer" parent="."]
+script = ExtResource("2_j6ua5")
 
 [node name="PathTop" type="Path2D" parent="."]
-position = Vector2(-50, -50)
-scale = Vector2(1.33123, 1)
+position = Vector2(-1262.59, -633.647)
+scale = Vector2(2.94066, 1.90213)
 curve = SubResource("Curve2D_nm6k2")
+metadata/_edit_group_ = true
 
 [node name="PathFollow2D" type="PathFollow2D" parent="PathTop"]
 position = Vector2(1019.36, -97)
-rotation = 2.60671
+rotation = 3.14159
+rotates = false
 
-[node name="PathTop2" type="Path2D" parent="."]
-position = Vector2(-50, 415)
-scale = Vector2(1.33123, 1)
+[node name="PathBottom" type="Path2D" parent="."]
+position = Vector2(-1281.9, 349.549)
+scale = Vector2(2.88406, 1.36596)
 curve = SubResource("Curve2D_nm6k2")
+metadata/_edit_group_ = true
 
-[node name="PathFollow2D" type="PathFollow2D" parent="PathTop2"]
+[node name="PathFollow2D" type="PathFollow2D" parent="PathBottom"]
 position = Vector2(1019.36, -97)
-rotation = 2.60671
+rotation = 3.14159
+rotates = false
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
