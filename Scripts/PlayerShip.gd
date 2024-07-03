@@ -11,6 +11,8 @@ signal player_died
 @onready var respawn_timer = $RespawnTimer
 @onready var blink_timer = $BlinkTimer
 @onready var sprite = $Sprite2D
+@onready var animationPlayer = $AnimationPlayer
+@onready var engineSprite = $EngineSprite
 
 var isImmune : bool
 
@@ -26,6 +28,12 @@ func _process(_delta):
 		rotation_dir = 1
 	else:
 		rotation_dir = 0 
+		
+	if input_vector.y != 0:
+		animationPlayer.play("engine_on")
+	else:
+		animationPlayer.stop()
+		engineSprite.hide()
 
 func _physics_process(delta):
 	rotation += rotation_dir * rotation_speed * delta

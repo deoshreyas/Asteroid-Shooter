@@ -20,3 +20,4 @@ func decreaseLives():
 		player.player_died.connect(decreaseLives)
 		get_tree().root.get_node("World").add_child(player)
 		player.global_position = player_start_pos
+		player.respawn_immunity()

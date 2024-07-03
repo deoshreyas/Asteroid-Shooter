@@ -58,7 +58,7 @@ func limit_movement():
 		global_position.x = bounds.left
 
 func _on_body_entered(body):
-	if body is PlayerShip:
+	if body is PlayerShip and !(body as PlayerShip).isImmune:
 		(body as PlayerShip).player_died.emit()
 		body.queue_free()
 		destroy_self()

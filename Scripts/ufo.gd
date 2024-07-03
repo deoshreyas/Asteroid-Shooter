@@ -6,7 +6,7 @@ class_name Ufo
 @export var bullet_scene : PackedScene
 @export var pathToFollow : PathFollow2D
 
-var speed = 150.0
+var speed = 50.0
 var current_path_point = 0
 
 func _process(delta):
@@ -37,3 +37,10 @@ func get_random_dir():
 	else:
 		var angle = deg_to_rad(randf_range(225, 315))
 		return Vector2(cos(angle), sin(angle))
+
+func _on_area_entered(area):
+	if area is Bullet:
+		queue_free()
+		area.queue_free()
+		destruction_particles.emitting = true
+		destruction_particles.reparent(get_tree().root)

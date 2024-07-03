@@ -11,6 +11,8 @@ height = 68.0
 
 [node name="UFO" type="Area2D"]
 scale = Vector2(0.5, 0.5)
+collision_layer = 8
+collision_mask = 7
 script = ExtResource("1_wpn0l")
 bullet_scene = ExtResource("2_mmkj0")
 metadata/_edit_group_ = true
@@ -33,5 +35,6 @@ scale = Vector2(3.85, 1.65)
 wait_time = 1.5
 autostart = true
 
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
 [connection signal="timeout" from="BulletTimer" to="." method="_on_bullet_timer_timeout"]

@@ -1,9 +1,48 @@
-[gd_scene load_steps=5 format=3 uid="uid://d171ojesuwkt"]
+[gd_scene load_steps=10 format=3 uid="uid://d171ojesuwkt"]
 
 [ext_resource type="Script" path="res://Scripts/PlayerShip.gd" id="1_kh820"]
 [ext_resource type="Texture2D" uid="uid://dxrnab177077r" path="res://Assets/Sprites/player.png" id="2_edvea"]
 [ext_resource type="Script" path="res://Scripts/Muzzle.gd" id="3_fgg54"]
 [ext_resource type="PackedScene" uid="uid://cb5sx3c2k62et" path="res://Scenes/bullet.tscn" id="4_h4j0e"]
+[ext_resource type="Texture2D" uid="uid://cp3akjgjnex2u" path="res://Assets/Sprites/throttle.png" id="5_tno82"]
+[ext_resource type="AudioStream" uid="uid://crgxayio8mh7w" path="res://Assets/SFX/player.ogg" id="6_5gi37"]
+
+[sub_resource type="Animation" id="Animation_ryqxs"]
+resource_name = "engine_on"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EngineSprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_d2bls"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("EngineSprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pitlu"]
+_data = {
+"RESET": SubResource("Animation_d2bls"),
+"engine_on": SubResource("Animation_ryqxs")
+}
 
 [node name="PlayerShip" type="CharacterBody2D"]
 rotation = 3.14159
@@ -29,6 +68,20 @@ one_shot = true
 
 [node name="BlinkTimer" type="Timer" parent="."]
 wait_time = 0.3
+
+[node name="EngineSprite" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, -27)
+rotation = 3.14159
+texture = ExtResource("5_tno82")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_pitlu")
+}
+
+[node name="ShootAudioPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_5gi37")
 
 [connection signal="timeout" from="RespawnTimer" to="." method="_on_respawn_timer_timeout"]
 [connection signal="timeout" from="BlinkTimer" to="." method="_on_blink_timer_timeout"]
