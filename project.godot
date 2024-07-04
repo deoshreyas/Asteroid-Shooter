@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="Asteroid Shooters"
-run/main_scene="res://Scenes/world.tscn"
+run/main_scene="res://Scenes/main_menu.tscn"
 config/features=PackedStringArray("4.0", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Bgmusic="*res://Scenes/bgmusic.tscn"
 
 [display]
 

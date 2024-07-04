@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cqwlaiooafey1"]
+
+[ext_resource type="AudioStream" uid="uid://cc7452f3jnrrr" path="res://Assets/SFX/music.mp3" id="1_mtw2d"]
+[ext_resource type="Script" path="res://Scripts/Bgmusic.gd" id="2_63veb"]
+
+[node name="Bgmusic" type="AudioStreamPlayer2D"]
+stream = ExtResource("1_mtw2d")
+autoplay = true
+script = ExtResource("2_63veb")

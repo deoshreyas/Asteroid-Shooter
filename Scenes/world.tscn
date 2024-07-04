@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://cubdsau7gep4q"]
+[gd_scene load_steps=6 format=3 uid="uid://cubdsau7gep4q"]
 
 [ext_resource type="PackedScene" uid="uid://d171ojesuwkt" path="res://Scenes/player_ship.tscn" id="1_21phs"]
 [ext_resource type="PackedScene" uid="uid://cxwiweku2uv23" path="res://Scenes/asteroid_spawner.tscn" id="2_f38y7"]
 [ext_resource type="PackedScene" uid="uid://1iunr85mqman" path="res://Scenes/ufo_spawner.tscn" id="3_fx1l4"]
 [ext_resource type="Script" path="res://Scripts/LivesManager.gd" id="4_gadmw"]
+[ext_resource type="PackedScene" uid="uid://du6i80a8pitl6" path="res://Scenes/ui_layer.tscn" id="5_0dacn"]
 
 [node name="World" type="Node"]
 
@@ -18,3 +19,9 @@ zoom = Vector2(0.5, 0.5)
 
 [node name="LivesManager" type="Node" parent="."]
 script = ExtResource("4_gadmw")
+
+[node name="UILayer" parent="." instance=ExtResource("5_0dacn")]
+
+[connection signal="game_won" from="AsteroidSpawner" to="UILayer" method="_on_asteroid_spawner_game_won"]
+[connection signal="update_points" from="AsteroidSpawner" to="UILayer" method="_on_asteroid_spawner_update_points"]
+[connection signal="player_death" from="LivesManager" to="UILayer" method="_on_lives_manager_player_death"]

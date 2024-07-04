@@ -11,3 +11,4 @@ func _process(delta):
 		bullet_shot.direction = Vector2(0, 1).rotated(get_parent().rotation)
 		bullet_shot.position = global_position
 		shoot_audio.play()
+		bullet_shot.add_to_group("PlayerBullet")

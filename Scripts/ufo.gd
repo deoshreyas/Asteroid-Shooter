@@ -26,6 +26,7 @@ func _on_bullet_timer_timeout():
 	get_tree().root.add_child(bullet)
 	bullet.position = global_position
 	bullet.direction = get_random_dir()
+	bullet.add_to_group("UFOBullet")
 	
 func get_random_dir():
 	var node_y = get_global_transform().origin.y 

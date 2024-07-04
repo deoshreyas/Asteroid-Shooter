@@ -1,13 +1,23 @@
 extends Node
 class_name AsteroidSpawner
 
+signal update_points(points: int)
+signal game_won
+
 @export var asteroid_scene : PackedScene
 
+@export var base_asteroid_points = 50
+
 @export var count = 7
+
+var points = 0 
+var total_asteroids_count = 0 
+var destroyed_asteroids_count = 0
 
 const utils = preload("res://Scripts/utilities.gd")
 
 func _ready():
+	total_asteroids_count = count * 7 
 	for i in range(count):
 		var spawn_position = get_random_position()
 		instantiate_asteroid(utils.size.BIG, spawn_position)
@@ -42,6 +52,13 @@ func instantiate_asteroid(size: utils.size, position : Vector2):
 	asteroid.on_asteroid_destroyed.connect(asteroid_destroyed)
 
 func asteroid_destroyed(size: utils.size, position: Vector2):
+	points += base_asteroid_points * (size + 1)
+	update_points.emit(points)
+	destroyed_asteroids_count += 1
+	
+	if destroyed_asteroids_count==total_asteroids_count:
+		game_won.emit()
+	
 	if size <= 2:
 		for i in range(2):
 			instantiate_asteroid(size, position)

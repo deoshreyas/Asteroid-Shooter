@@ -74,6 +74,6 @@ func destroy_self():
 	on_asteroid_destroyed.emit(new_asteroid_size, global_position)
 
 func _on_area_entered(area):
-	if area is Bullet:
+	if area is Bullet and area.is_in_group("PlayerBullet"):
 		area.queue_free()
 		destroy_self()
